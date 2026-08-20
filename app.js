@@ -93,12 +93,9 @@ const DIFFICULTY = {
   chaos: 4,
 };
 
-const STARTER = ["Umbrella", "Volcano"];
-
 const state = {
   difficulty: "easy",
   words: [],
-  usedStarter: false,
 };
 
 const views = {
@@ -150,14 +147,7 @@ function renderWords() {
 }
 
 function dealWords() {
-  const count = DIFFICULTY[state.difficulty];
-  if (!state.usedStarter && count === 2) {
-    state.words = [...STARTER];
-    state.usedStarter = true;
-  } else {
-    state.words = pickWords(count);
-    state.usedStarter = true;
-  }
+  state.words = pickWords(DIFFICULTY[state.difficulty]);
   renderWords();
   form.reset();
 }
@@ -171,7 +161,12 @@ function setDifficulty(next) {
 }
 
 function startExercise() {
-  setDifficulty(state.difficulty);
+  setDifficulty("easy");
+  show("exercise");
+}
+
+function continueExercise() {
+  dealWords();
   show("exercise");
 }
 
@@ -198,7 +193,7 @@ document.getElementById("start-btn").addEventListener("click", startExercise);
 document.getElementById("back-btn").addEventListener("click", () => show("home"));
 document.getElementById("home-btn").addEventListener("click", () => show("home"));
 document.getElementById("reshuffle-btn").addEventListener("click", dealWords);
-document.getElementById("again-btn").addEventListener("click", startExercise);
+document.getElementById("again-btn").addEventListener("click", continueExercise);
 
 document.querySelectorAll(".diff-btn").forEach((btn) => {
   btn.addEventListener("click", () => setDifficulty(btn.dataset.difficulty));
