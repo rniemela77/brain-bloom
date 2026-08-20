@@ -6,7 +6,7 @@
     <title>Ether Trace</title>
     <meta
       name="description"
-      content="A tiny workout for your imagination. Start with Random Connection."
+      content="A tiny workout for your imagination. Short exercises for coming up with ideas."
     />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,9 +51,18 @@
           </div>
           <h1 class="wordmark">Ether Trace</h1>
           <p class="tagline">A tiny workout for your imagination.</p>
-          <button class="btn btn-primary" id="start-btn" type="button">
-            Give me an exercise
-          </button>
+          <div class="exercise-picks">
+            <button class="pick" type="button" data-exercise="connection">
+              <span class="pick-n">01</span>
+              <span class="pick-title">Random Connection</span>
+              <span class="pick-lead">Unrelated words. Make them belong together.</span>
+            </button>
+            <button class="pick" type="button" data-exercise="uses">
+              <span class="pick-n">02</span>
+              <span class="pick-title">What Else Could It Be?</span>
+              <span class="pick-lead">An ordinary object. Five other uses. 60 seconds.</span>
+            </button>
+          </div>
           <button class="text-btn about-jump" id="about-jump" type="button">
             What’s this?
           </button>
@@ -69,9 +78,10 @@
               exercise takes a few minutes.
             </p>
             <p>
-              Right now there is one: Random Connection. You get unrelated
-              words, like umbrella and volcano. You think of three ways they
-              could be connected, and you write them down.
+              Right now there are two. Random Connection gives you unrelated
+              words and asks how they could be connected. What Else Could It
+              Be? gives you an ordinary object and asks what else you could
+              use it for.
             </p>
             <p>
               Linking things that don’t usually go together is a basic part of
@@ -83,13 +93,13 @@
       </section>
 
       <section
-        id="exercise"
+        id="connection"
         class="view"
-        aria-label="Exercise"
+        aria-label="Random Connection"
         hidden
       >
         <header class="exercise-top">
-          <button class="text-btn" id="back-btn" type="button">
+          <button class="text-btn js-home" id="back-btn" type="button">
             ← Home
           </button>
           <p class="exercise-kicker">Exercise 01</p>
@@ -97,7 +107,7 @@
 
         <h2 class="exercise-title">Random Connection</h2>
         <p class="exercise-lead">
-          Unrelated words. Your job is to make them belong together.
+          Generate new ideas by connecting ones that don’t usually go together.
         </p>
 
         <div
@@ -178,6 +188,64 @@
         </aside>
       </section>
 
+      <section
+        id="uses"
+        class="view"
+        aria-label="What Else Could It Be?"
+        hidden
+      >
+        <header class="exercise-top">
+          <button class="text-btn js-home" type="button">← Home</button>
+          <p class="exercise-kicker">Exercise 02</p>
+        </header>
+
+        <h2 class="exercise-title">What Else Could It Be?</h2>
+        <p class="exercise-lead">
+          Generate more options by inventing uses beyond the obvious.
+        </p>
+
+        <div id="object-stage" class="word-stage" aria-live="polite"></div>
+
+        <div class="round-meta">
+          <p class="timer" id="uses-timer">
+            <span class="timer-label">Time</span>
+            <span id="timer-display">1:00</span>
+          </p>
+          <p class="challenge" id="uses-challenge"></p>
+        </div>
+
+        <form id="uses-form" class="answers">
+          <label class="uses-label">
+            <span class="visually-hidden">Your other uses</span>
+            <textarea
+              id="uses-input"
+              name="uses"
+              class="uses-box"
+              rows="10"
+              maxlength="1200"
+              placeholder="List 5 other uses. Fast is fine. Weird is better."
+            ></textarea>
+          </label>
+
+          <p class="uses-status" id="uses-status" aria-live="polite"></p>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Trace it</button>
+            <button class="btn btn-ghost" id="weirder-btn" type="button">
+              Give me a weirder object
+            </button>
+          </div>
+        </form>
+
+        <aside class="why">
+          <h3>Why it works</h3>
+          <p>
+            It’s practice at seeing more than the obvious use — a basic move
+            in coming up with ideas.
+          </p>
+        </aside>
+      </section>
+
       <section id="complete" class="view" aria-label="Your trace" hidden>
         <p class="exercise-kicker">Nice work</p>
         <h2 class="exercise-title">Your brain just did something unusual.</h2>
@@ -187,7 +255,7 @@
           <button class="btn btn-primary" id="again-btn" type="button">
             Another round
           </button>
-          <button class="btn btn-ghost" id="home-btn" type="button">
+          <button class="btn btn-ghost js-home" id="home-btn" type="button">
             Back home
           </button>
         </div>
