@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brain Bloom</title>
+    <meta
+      name="description"
+      content="A tiny workout for your imagination. Start with Random Connection."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+
+    <main>
+      <section id="home" class="view is-active" aria-label="Welcome">
+        <div class="home-mark" aria-hidden="true">
+          <svg viewBox="0 0 72 72" fill="none">
+            <circle cx="36" cy="42" r="7" fill="currentColor" opacity="0.9" />
+            <path
+              d="M36 38c-1.2-10 4.5-18 12-22-2 8-1 16-6 22"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M36 38c1.4-11-3.8-19-12-23 1.6 8 .8 16 6 23"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M36 38c8-7 18-6 24 1-8 1.5-16 4-22 8"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M36 38c-8-8-18-7-24 0 8 2 16 4.5 22 9"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M36 44v16"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <h1 class="wordmark">Brain Bloom</h1>
+        <p class="tagline">A tiny workout for your imagination.</p>
+        <button class="btn btn-bloom" id="start-btn" type="button">
+          Give me an exercise
+        </button>
+      </section>
+
+      <section
+        id="exercise"
+        class="view"
+        aria-label="Exercise"
+        hidden
+      >
+        <header class="exercise-top">
+          <button class="text-btn" id="back-btn" type="button">
+            ← Home
+          </button>
+          <p class="exercise-kicker">Exercise 01</p>
+        </header>
+
+        <h2 class="exercise-title">Random Connection</h2>
+        <p class="exercise-lead">
+          Unrelated words. Your job is to make them belong together.
+        </p>
+
+        <div
+          class="difficulty"
+          role="group"
+          aria-label="Difficulty"
+        >
+          <button
+            class="diff-btn is-active"
+            type="button"
+            data-difficulty="easy"
+          >
+            Easy
+            <span>2 words</span>
+          </button>
+          <button class="diff-btn" type="button" data-difficulty="medium">
+            Medium
+            <span>3 words</span>
+          </button>
+          <button class="diff-btn" type="button" data-difficulty="chaos">
+            Chaos
+            <span>4 words</span>
+          </button>
+        </div>
+
+        <div id="word-stage" class="word-stage" aria-live="polite"></div>
+
+        <p class="challenge">
+          Come up with <strong>3 ways</strong> these could be connected.
+        </p>
+
+        <form id="answers-form" class="answers">
+          <label>
+            <span class="answer-n">1</span>
+            <textarea
+              name="a1"
+              rows="3"
+              required
+              maxlength="400"
+              placeholder="A story, a product, a joke, a scene…"
+            ></textarea>
+          </label>
+          <label>
+            <span class="answer-n">2</span>
+            <textarea
+              name="a2"
+              rows="3"
+              required
+              maxlength="400"
+              placeholder="Another way — different angle."
+            ></textarea>
+          </label>
+          <label>
+            <span class="answer-n">3</span>
+            <textarea
+              name="a3"
+              rows="3"
+              required
+              maxlength="400"
+              placeholder="One more. Weirder is better."
+            ></textarea>
+          </label>
+
+          <div class="actions">
+            <button class="btn btn-bloom" type="submit">Bloom it</button>
+            <button class="btn btn-ghost" id="reshuffle-btn" type="button">
+              New words
+            </button>
+          </div>
+        </form>
+
+        <aside class="why">
+          <h3>Why it works</h3>
+          <p>
+            It trains the brain to make unusual associations — the basic
+            building block of a lot of creative thinking.
+          </p>
+        </aside>
+      </section>
+
+      <section id="complete" class="view" aria-label="Your bloom" hidden>
+        <p class="exercise-kicker">Nice work</p>
+        <h2 class="exercise-title">Your brain just did something unusual.</h2>
+        <p class="exercise-lead" id="complete-words"></p>
+        <ol class="bloom-list" id="bloom-list"></ol>
+        <div class="actions">
+          <button class="btn btn-bloom" id="again-btn" type="button">
+            Another round
+          </button>
+          <button class="btn btn-ghost" id="home-btn" type="button">
+            Back home
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
