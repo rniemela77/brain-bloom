@@ -35,6 +35,9 @@ body {
   line-height: 1.5;
   background: var(--paper);
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
 }
 
 .atmosphere {
@@ -60,6 +63,7 @@ body {
 main {
   position: relative;
   z-index: 1;
+  flex: 1 0 auto;
   width: min(720px, calc(100% - 2.4rem));
   margin: 0 auto;
   padding: 4.5rem 0 5rem;
@@ -571,6 +575,36 @@ textarea::placeholder {
   font-weight: 700;
 }
 
+.site-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1.2rem;
+  width: min(720px, calc(100% - 2.4rem));
+  margin: 0 auto;
+  padding: 1.35rem 0 2.2rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-faint);
+  font-size: 0.88rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--moss);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--flare);
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -594,8 +628,12 @@ textarea::placeholder {
 }
 
 @media (max-width: 560px) {
-  main {
+  main,
+  .site-footer {
     width: min(720px, calc(100% - 1.6rem));
+  }
+
+  main {
     padding-top: 2.4rem;
   }
 
