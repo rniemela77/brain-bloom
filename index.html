@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Brain Bloom</title>
+    <title>Ether Trace</title>
     <meta
       name="description"
       content="A tiny workout for your imagination. Start with Random Connection."
@@ -22,46 +22,64 @@
 
     <main>
       <section id="home" class="view is-active" aria-label="Welcome">
-        <div class="home-mark" aria-hidden="true">
-          <svg viewBox="0 0 72 72" fill="none">
-            <circle cx="36" cy="42" r="7" fill="currentColor" opacity="0.9" />
-            <path
-              d="M36 38c-1.2-10 4.5-18 12-22-2 8-1 16-6 22"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-            />
-            <path
-              d="M36 38c1.4-11-3.8-19-12-23 1.6 8 .8 16 6 23"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-            />
-            <path
-              d="M36 38c8-7 18-6 24 1-8 1.5-16 4-22 8"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-            />
-            <path
-              d="M36 38c-8-8-18-7-24 0 8 2 16 4.5 22 9"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-            />
-            <path
-              d="M36 44v16"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-            />
-          </svg>
+        <div class="home-hero">
+          <div class="home-mark" aria-hidden="true">
+            <svg viewBox="0 0 72 72" fill="none">
+              <path
+                d="M34 54C22 50 14 38 12 18"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M34 54C36 38 42 22 46 10"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M34 54C48 52 60 46 64 30"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <circle cx="34" cy="54" r="3.4" fill="currentColor" />
+              <circle cx="12" cy="18" r="3" fill="currentColor" />
+              <circle cx="46" cy="10" r="4.3" fill="currentColor" />
+              <circle cx="64" cy="30" r="3.2" fill="currentColor" />
+            </svg>
+          </div>
+          <h1 class="wordmark">Ether Trace</h1>
+          <p class="tagline">A tiny workout for your imagination.</p>
+          <button class="btn btn-primary" id="start-btn" type="button">
+            Give me an exercise
+          </button>
+          <button class="text-btn about-jump" id="about-jump" type="button">
+            What’s this?
+          </button>
         </div>
-        <h1 class="wordmark">Brain Bloom</h1>
-        <p class="tagline">A tiny workout for your imagination.</p>
-        <button class="btn btn-bloom" id="start-btn" type="button">
-          Give me an exercise
-        </button>
+
+        <article id="about" class="about">
+          <p class="exercise-kicker">About</p>
+          <h2 class="about-title">Short exercises for your imagination.</h2>
+
+          <div class="about-prose">
+            <p>
+              Ether Trace helps you practice coming up with ideas. Each
+              exercise takes a few minutes.
+            </p>
+            <p>
+              Right now there is one: Random Connection. You get unrelated
+              words, like umbrella and volcano. You think of three ways they
+              could be connected, and you write them down.
+            </p>
+            <p>
+              Linking things that don’t usually go together is a basic part of
+              creative thinking. The more you do it, the easier it gets.
+            </p>
+            <p>No account. No score. More exercises later.</p>
+          </div>
+        </article>
       </section>
 
       <section
@@ -144,7 +162,7 @@
           </label>
 
           <div class="actions">
-            <button class="btn btn-bloom" type="submit">Bloom it</button>
+            <button class="btn btn-primary" type="submit">Trace it</button>
             <button class="btn btn-ghost" id="reshuffle-btn" type="button">
               New words
             </button>
@@ -160,13 +178,13 @@
         </aside>
       </section>
 
-      <section id="complete" class="view" aria-label="Your bloom" hidden>
+      <section id="complete" class="view" aria-label="Your trace" hidden>
         <p class="exercise-kicker">Nice work</p>
         <h2 class="exercise-title">Your brain just did something unusual.</h2>
         <p class="exercise-lead" id="complete-words"></p>
-        <ol class="bloom-list" id="bloom-list"></ol>
+        <ol class="trace-list" id="trace-list"></ol>
         <div class="actions">
-          <button class="btn btn-bloom" id="again-btn" type="button">
+          <button class="btn btn-primary" id="again-btn" type="button">
             Another round
           </button>
           <button class="btn btn-ghost" id="home-btn" type="button">

@@ -109,7 +109,7 @@ const views = {
 
 const wordStage = document.getElementById("word-stage");
 const form = document.getElementById("answers-form");
-const bloomList = document.getElementById("bloom-list");
+const traceList = document.getElementById("trace-list");
 const completeWords = document.getElementById("complete-words");
 
 function show(name) {
@@ -177,7 +177,7 @@ function startExercise() {
 
 function finishExercise(answers) {
   completeWords.textContent = state.words.join(" + ");
-  bloomList.replaceChildren(
+  traceList.replaceChildren(
     ...answers.map((text) => {
       const item = document.createElement("li");
       item.textContent = text;
@@ -186,6 +186,13 @@ function finishExercise(answers) {
   );
   show("complete");
 }
+
+document.getElementById("about-jump").addEventListener("click", () => {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.getElementById("about").scrollIntoView({
+    behavior: reduce ? "auto" : "smooth",
+  });
+});
 
 document.getElementById("start-btn").addEventListener("click", startExercise);
 document.getElementById("back-btn").addEventListener("click", () => show("home"));

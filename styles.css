@@ -6,8 +6,8 @@
   --ink-faint: rgba(27, 42, 28, 0.42);
   --moss: #3f5c42;
   --leaf: #6d8f70;
-  --bloom: #d94a38;
-  --bloom-deep: #b83828;
+  --flare: #d94a38;
+  --flare-deep: #b83828;
   --petal: #f3c2b6;
   --pollen: #e2a42a;
   --line: rgba(27, 42, 28, 0.14);
@@ -79,7 +79,11 @@ main {
 }
 
 #home.is-active {
-  min-height: calc(100vh - 9.5rem);
+  display: block;
+}
+
+.home-hero {
+  min-height: calc(100svh - 9.5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,10 +91,52 @@ main {
   text-align: center;
 }
 
+.about-jump {
+  margin-top: 1.6rem;
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+
+.about-jump:hover {
+  color: var(--flare);
+}
+
+.about {
+  scroll-margin-top: 2.5rem;
+  margin-top: 1rem;
+  padding: 3.2rem 0 1rem;
+  border-top: 1px solid var(--line);
+  text-align: left;
+}
+
+.about-title {
+  margin: 0.55rem 0 1.5rem;
+  max-width: 12em;
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 6vw, 3.15rem);
+  font-weight: 500;
+  font-variation-settings: "SOFT" 55, "opsz" 72;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.about-prose {
+  display: grid;
+  gap: 1rem;
+  max-width: 34em;
+  color: var(--ink-soft);
+  font-size: 1.12rem;
+  line-height: 1.62;
+}
+
+.about-prose p {
+  margin: 0;
+}
+
 .home-mark {
   width: 72px;
   height: 72px;
-  color: var(--bloom);
+  color: var(--flare);
   margin-bottom: 1.4rem;
 }
 
@@ -131,16 +177,16 @@ main {
   transform: translateY(1px) scale(0.985);
 }
 
-.btn-bloom {
+.btn-primary {
   color: var(--paper);
-  background: var(--bloom);
+  background: var(--flare);
   padding: 0.95rem 1.7rem;
   border-radius: 2em 1.35em 2.15em 1.55em;
   box-shadow: 0 12px 28px rgba(217, 74, 56, 0.28);
 }
 
-.btn-bloom:hover {
-  background: var(--bloom-deep);
+.btn-primary:hover {
+  background: var(--flare-deep);
 }
 
 .btn-ghost {
@@ -168,7 +214,7 @@ main {
 }
 
 .text-btn:hover {
-  color: var(--bloom);
+  color: var(--flare);
 }
 
 .exercise-top {
@@ -181,7 +227,7 @@ main {
 
 .exercise-kicker {
   margin: 0;
-  color: var(--bloom);
+  color: var(--flare);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -270,16 +316,16 @@ main {
   font-variation-settings: "SOFT" 60, "WONK" 1, "opsz" 96;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  animation: bloom-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: arrive 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .plus {
-  color: var(--bloom);
+  color: var(--flare);
   font-family: var(--serif);
   font-size: clamp(1.2rem, 3vw, 1.8rem);
   font-style: italic;
   opacity: 0.8;
-  animation: bloom-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: arrive 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .challenge {
@@ -307,7 +353,7 @@ main {
   place-items: center;
   border-radius: 50%;
   background: var(--petal);
-  color: var(--bloom-deep);
+  color: var(--flare-deep);
   font-size: 0.78rem;
   font-weight: 700;
 }
@@ -327,7 +373,7 @@ textarea {
 }
 
 textarea:focus {
-  outline: 2px solid var(--bloom);
+  outline: 2px solid var(--flare);
   outline-offset: 2px;
 }
 
@@ -363,17 +409,17 @@ textarea::placeholder {
   max-width: 38em;
 }
 
-.bloom-list {
+.trace-list {
   margin: 0 0 2rem;
   padding: 0;
   list-style: none;
   display: grid;
   gap: 0.8rem;
-  counter-reset: bloom;
+  counter-reset: trace;
 }
 
-.bloom-list li {
-  counter-increment: bloom;
+.trace-list li {
+  counter-increment: trace;
   position: relative;
   padding: 1rem 1.1rem 1rem 3rem;
   background: rgba(255, 252, 246, 0.6);
@@ -381,8 +427,8 @@ textarea::placeholder {
   border-radius: 1.15rem;
 }
 
-.bloom-list li::before {
-  content: counter(bloom);
+.trace-list li::before {
+  content: counter(trace);
   position: absolute;
   left: 0.9rem;
   top: 1rem;
@@ -392,7 +438,7 @@ textarea::placeholder {
   place-items: center;
   border-radius: 50%;
   background: var(--petal);
-  color: var(--bloom-deep);
+  color: var(--flare-deep);
   font-size: 0.78rem;
   font-weight: 700;
 }
@@ -408,7 +454,7 @@ textarea::placeholder {
   }
 }
 
-@keyframes bloom-in {
+@keyframes arrive {
   from {
     opacity: 0;
     transform: translateY(10px) scale(0.92);
