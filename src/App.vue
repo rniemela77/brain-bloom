@@ -72,9 +72,9 @@ function finishUses(answers) {
 </script>
 
 <template>
-  <div class="atmosphere" aria-hidden="true"></div>
+  <div class="atmosphere" :class="{ 'is-quiet': view === 'home' }" aria-hidden="true"></div>
 
-  <main>
+  <main :class="{ 'is-home': view === 'home' }">
     <HomeView v-if="view === 'home'" @open="openExercise" />
     <ConnectionView
       v-else-if="view === 'connection'"
@@ -101,7 +101,7 @@ function finishUses(answers) {
     />
   </main>
 
-  <footer class="site-footer">
+  <footer v-if="view !== 'home'" class="site-footer">
     <p>© 2026 Robert Niemela</p>
     <a href="https://www.rvniemela.com/">rvniemela.com</a>
   </footer>

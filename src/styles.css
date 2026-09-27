@@ -612,6 +612,191 @@ textarea::placeholder {
   color: var(--flare);
 }
 
+.atmosphere.is-quiet {
+  background: #f7f4ee;
+}
+
+.atmosphere.is-quiet::after {
+  opacity: 0.025;
+}
+
+main.is-home {
+  width: min(32.5rem, 100%);
+  padding: 1.15rem 1.65rem 3rem;
+}
+
+.home-screen {
+  color: #1a2330;
+}
+
+.home-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.45rem 0 2.85rem;
+}
+
+.home-logo {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variation-settings: "SOFT" 40, "opsz" 48, "WONK" 1;
+}
+
+.home-logo-off {
+  font-style: italic;
+}
+
+.home-account {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: -0.2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1a2330;
+  cursor: pointer;
+}
+
+.home-account svg {
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
+.home-question {
+  margin: 0 0 1.45rem;
+  font-family: var(--serif);
+  font-size: clamp(2.15rem, 7.4vw, 2.85rem);
+  font-weight: 500;
+  letter-spacing: -0.038em;
+  line-height: 1.05;
+  font-variation-settings: "SOFT" 15, "opsz" 96;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+}
+
+.home-question-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.home-paths {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.path-slot {
+  position: relative;
+}
+
+.path-slot-unstuck {
+  transform: rotate(-2deg);
+}
+
+.path-slot-connection,
+.path-slot-uses {
+  transform: rotate(-1deg);
+}
+
+.path {
+  appearance: none;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0;
+  padding: 1.2rem 1rem 1.25rem 1.2rem;
+  border: 1px solid rgba(26, 35, 48, 0.13);
+  border-radius: 1.2rem;
+  background: #fbf9f4;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(70, 48, 24, 0.045);
+}
+
+.path-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.path-title {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  font-variation-settings: "SOFT" 25, "opsz" 60;
+}
+
+.path-lead {
+  color: #5c6570;
+  font-size: 1.02rem;
+  line-height: 1.28;
+}
+
+.path-arrow {
+  flex: none;
+  margin-left: auto;
+  color: #1a2330;
+}
+
+.path-arrow svg {
+  display: block;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.path-unstuck {
+  min-height: 7.65rem;
+  border: 0;
+  background-color: #f0dc62;
+  background-size: cover;
+  background-position: center;
+  box-shadow: none;
+}
+
+.path-unstuck .path-lead {
+  color: #2a3140;
+}
+
+.path-spark {
+  position: absolute;
+  z-index: 2;
+  width: 4.35rem;
+  height: auto;
+  right: 0.55rem;
+  top: -1.45rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.path-pink {
+  position: absolute;
+  z-index: 0;
+  width: 5.6rem;
+  height: 10.5rem;
+  right: -1.7rem;
+  top: -0.15rem;
+  object-fit: cover;
+  object-position: right center;
+  transform: rotate(-12deg);
+  transform-origin: center center;
+  pointer-events: none;
+  user-select: none;
+}
+
 @keyframes rise {
   from {
     opacity: 0;

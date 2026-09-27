@@ -1,83 +1,102 @@
 <script setup>
+import yellowPaper from "../assets/home/yellow-paper.png";
+import pinkPaper from "../assets/home/pink-paper.png";
+import spark from "../assets/home/spark.png";
+
 const emit = defineEmits(["open"]);
 
-function jumpToAbout() {
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.getElementById("about")?.scrollIntoView({
-    behavior: reduce ? "auto" : "smooth",
-  });
-}
+const paths = [
+  {
+    id: "unstuck",
+    title: "Get Unstuck",
+    lead: ["A quick shift in perspective", "(5 min)"],
+    featured: true,
+  },
+  {
+    id: "connection",
+    title: "Random Connection",
+    lead: ["Unrelated words.", "Make them belong together."],
+    exercise: "connection",
+  },
+  {
+    id: "uses",
+    title: "What Else Could It Be?",
+    lead: ["An ordinary object. Five other uses.", "60 seconds."],
+    exercise: "uses",
+  },
+];
 </script>
 
 <template>
-  <section id="home" class="view is-active" aria-label="Welcome">
-    <div class="home-hero">
-      <div class="home-mark" aria-hidden="true">
-        <svg viewBox="0 0 72 72" fill="none">
+  <section id="home" class="view is-active home-screen" aria-label="Welcome">
+    <header class="home-bar">
+      <p class="home-logo"><span class="home-logo-off">Off</span>script</p>
+      <button class="home-account" type="button" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.15" stroke="currentColor" stroke-width="1.7" />
           <path
-            d="M34 54C22 50 14 38 12 18"
+            d="M5.2 19.4c1.35-2.7 3.55-4 6.8-4s5.45 1.3 6.8 4"
             stroke="currentColor"
-            stroke-width="2.2"
+            stroke-width="1.7"
             stroke-linecap="round"
           />
-          <path
-            d="M34 54C36 38 42 22 46 10"
-            stroke="currentColor"
-            stroke-width="2.2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M34 54C48 52 60 46 64 30"
-            stroke="currentColor"
-            stroke-width="2.2"
-            stroke-linecap="round"
-          />
-          <circle cx="34" cy="54" r="3.4" fill="currentColor" />
-          <circle cx="12" cy="18" r="3" fill="currentColor" />
-          <circle cx="46" cy="10" r="4.3" fill="currentColor" />
-          <circle cx="64" cy="30" r="3.2" fill="currentColor" />
         </svg>
-      </div>
-      <h1 class="wordmark">Ether Trace</h1>
-      <p class="tagline">A tiny workout for your imagination.</p>
-      <div class="exercise-picks">
-        <button class="pick" type="button" @click="emit('open', 'connection')">
-          <span class="pick-n">01</span>
-          <span class="pick-title">Random Connection</span>
-          <span class="pick-lead">Unrelated words. Make them belong together.</span>
-        </button>
-        <button class="pick" type="button" @click="emit('open', 'uses')">
-          <span class="pick-n">02</span>
-          <span class="pick-title">What Else Could It Be?</span>
-          <span class="pick-lead">An ordinary object. Five other uses. 60 seconds.</span>
-        </button>
-      </div>
-      <button class="text-btn about-jump" type="button" @click="jumpToAbout">
-        What’s this?
       </button>
-    </div>
+    </header>
 
-    <article id="about" class="about">
-      <p class="exercise-kicker">About</p>
-      <h2 class="about-title">Short exercises for your imagination.</h2>
+    <h1 class="home-question">
+      <span class="home-question-line">Where do you want</span>
+      to go today?
+    </h1>
 
-      <div class="about-prose">
-        <p>
-          Ether Trace helps you practice coming up with ideas. Each
-          exercise takes a few minutes.
-        </p>
-        <p>
-          Right now there are two. Random Connection gives you unrelated
-          words and asks how they could be connected. What Else Could It
-          Be? gives you an ordinary object and asks what else you could
-          use it for.
-        </p>
-        <p>
-          Linking things that don’t usually go together is a basic part of
-          creative thinking. The more you do it, the easier it gets.
-        </p>
-        <p>No account. No score. More exercises later.</p>
+    <div class="home-paths">
+      <div
+        v-for="path in paths"
+        :key="path.id"
+        class="path-slot"
+        :class="`path-slot-${path.id}`"
+      >
+        <img
+          v-if="path.featured"
+          class="path-spark"
+          :src="spark"
+          alt=""
+        />
+        <img
+          v-if="path.id === 'uses'"
+          class="path-pink"
+          :src="pinkPaper"
+          alt=""
+        />
+        <button
+          class="path"
+          :class="{ 'path-unstuck': path.featured }"
+          :style="path.featured ? { backgroundImage: `url(${yellowPaper})` } : undefined"
+          type="button"
+          @click="path.exercise && emit('open', path.exercise)"
+        >
+          <span class="path-copy">
+            <span class="path-title">{{ path.title }}</span>
+            <span class="path-lead">
+              <template v-for="(line, index) in path.lead" :key="line">
+                <br v-if="index" />
+                {{ line }}
+              </template>
+            </span>
+          </span>
+          <span class="path-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12h13M13.5 6.5 19 12l-5.5 5.5"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </button>
       </div>
-    </article>
+    </div>
   </section>
 </template>
