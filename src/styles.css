@@ -27,6 +27,13 @@ body {
   min-height: 100%;
 }
 
+#app {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  min-height: 100svh;
+}
+
 body {
   margin: 0;
   color: var(--ink);
