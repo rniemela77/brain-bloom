@@ -677,7 +677,7 @@ main.is-home {
   letter-spacing: -0.038em;
   line-height: 1.05;
   font-variation-settings: "SOFT" 15, "opsz" 96;
-  transform: rotate(-2deg);
+  transform: rotate(-3.5deg);
   transform-origin: left center;
 }
 
@@ -722,6 +722,17 @@ main.is-home {
   text-align: left;
   cursor: pointer;
   box-shadow: 0 10px 26px rgba(70, 48, 24, 0.045);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 0.8, 0.24, 1),
+    box-shadow 0.45s ease;
+}
+
+.path:hover,
+.path:focus-visible {
+  transform: translateY(-4px) rotate(1.6deg);
+  box-shadow:
+    0 16px 28px rgba(70, 48, 24, 0.08),
+    8px 7px 0 -3px #f3c2b6;
 }
 
 .path-copy {
@@ -737,7 +748,34 @@ main.is-home {
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.08;
-  font-variation-settings: "SOFT" 25, "opsz" 60;
+  font-variation-settings: "SOFT" 25, "opsz" 60, "WONK" 0;
+  position: relative;
+  z-index: 0;
+  transition: font-variation-settings 0.5s ease;
+}
+
+.path-title::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.06em;
+  bottom: 0.06em;
+  width: 102%;
+  height: 0.32em;
+  background: #f6b7c4;
+  transform: scaleX(0) rotate(-2deg);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.22, 0.7, 0.2, 1);
+}
+
+.path:hover .path-title,
+.path:focus-visible .path-title {
+  font-variation-settings: "SOFT" 100, "opsz" 60, "WONK" 1;
+}
+
+.path:hover .path-title::after,
+.path:focus-visible .path-title::after {
+  transform: scaleX(1) rotate(-2deg);
 }
 
 .path-lead {
@@ -750,6 +788,12 @@ main.is-home {
   flex: none;
   margin-left: auto;
   color: #1a2330;
+  transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+
+.path:hover .path-arrow,
+.path:focus-visible .path-arrow {
+  transform: translateX(0.28rem) rotate(-10deg);
 }
 
 .path-arrow svg {
@@ -765,6 +809,15 @@ main.is-home {
   background-size: cover;
   background-position: center;
   box-shadow: none;
+}
+
+.path-unstuck:hover,
+.path-unstuck:focus-visible {
+  box-shadow: 7px 8px 0 -2px rgba(26, 35, 48, 0.1);
+}
+
+.path-unstuck .path-title::after {
+  background: rgba(255, 252, 244, 0.72);
 }
 
 .path-unstuck .path-lead {
@@ -896,6 +949,8 @@ main.is-unstuck {
 
 .unstuck-title {
   margin: 1.7rem 0 1.15rem;
+  transform: rotate(-3.5deg);
+  transform-origin: left center;
   font-family: var(--serif);
   font-size: clamp(2.45rem, 8.2vw, 3.05rem);
   font-weight: 500;
@@ -971,7 +1026,7 @@ main.is-unstuck {
 .scene-scribble {
   z-index: 2;
   right: -2%;
-  bottom: 13.5rem;
+  bottom: 15.75rem;
   width: 15rem;
   transform: rotate(8deg);
 }
@@ -1091,6 +1146,10 @@ main.is-unstuck {
   line-height: 1.35;
 }
 
+.prompt-intro-ink {
+  color: #1a2330;
+}
+
 .prompt-list {
   list-style: none;
   margin: 1.7rem 0 0;
@@ -1118,6 +1177,11 @@ main.is-unstuck {
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 1;
+}
+
+.prompt-list li:first-child .prompt-n,
+.angle-list li:first-child .prompt-n {
+  background-size: 112%;
 }
 
 .prompt-text {
@@ -1153,6 +1217,8 @@ main.is-unstuck {
   letter-spacing: -0.04em;
   line-height: 0.92;
   font-variation-settings: "SOFT" 30, "opsz" 80, "WONK" 1;
+  transform: rotate(-3.5deg);
+  transform-origin: left center;
 }
 
 .angles-marked {
@@ -1233,17 +1299,132 @@ main.is-unstuck {
 }
 
 .angles-another {
+  appearance: none;
   position: relative;
   z-index: 1;
   margin: 0;
   width: 100%;
   padding: 1.05rem 1.2rem;
+  border: 0;
   border-radius: 999px;
   background: #e6e1d8;
   color: #1a2330;
+  font: inherit;
   font-size: 1.05rem;
   font-weight: 500;
   text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.angles-another::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  width: 42rem;
+  height: 42rem;
+  margin-left: -21rem;
+  margin-top: -21rem;
+  background: url("./assets/unstuck/button-scratch.png") 0% 0% / 18rem auto repeat;
+  filter: invert(1);
+  mix-blend-mode: multiply;
+  opacity: 0;
+}
+
+.angles-another:hover::before {
+  opacity: 1;
+  animation: ready-grain 1s linear infinite;
+}
+
+.stands-title {
+  position: relative;
+  max-width: 12em;
+  margin-bottom: 1.4rem;
+  font-style: italic;
+  font-size: clamp(2.85rem, 10vw, 3.75rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  font-variation-settings: "SOFT" 30, "opsz" 80, "WONK" 1;
+}
+
+.stands-spark {
+  position: absolute;
+  right: 5.5rem;
+  top: 2.1rem;
+  width: 6.8rem;
+  height: auto;
+  pointer-events: none;
+}
+
+.stands-copy {
+  margin: 0;
+  max-width: 22em;
+  color: #8b939c;
+  font-size: 1.12rem;
+  line-height: 1.4;
+}
+
+.stands-scene {
+  position: relative;
+  flex: 1;
+  min-height: 18rem;
+  margin-top: 1.2rem;
+}
+
+.stands-aside {
+  position: absolute;
+  z-index: 2;
+  left: -0.15rem;
+  bottom: 5.5rem;
+  margin: 0;
+  color: #1a2330;
+  font-family: "Caveat", cursive;
+  font-size: 1.85rem;
+  font-weight: 600;
+  line-height: 0.92;
+  transform: rotate(-8deg);
+  transform-origin: left center;
+}
+
+.stands-aside svg {
+  display: block;
+  width: 3.4rem;
+  height: auto;
+  margin-top: 0.15rem;
+  margin-left: 2.1rem;
+}
+
+.stands-photo {
+  position: absolute;
+  right: -8%;
+  bottom: 0.2rem;
+  width: 92%;
+  transform: rotate(-8deg);
+  transform-origin: center center;
+}
+
+.stands-range {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.stands-square {
+  position: absolute;
+  z-index: 1;
+  right: 8%;
+  top: -14%;
+  width: 22%;
+  height: auto;
+  mix-blend-mode: hard-light;
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+.stands-done {
+  border-color: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1257,7 +1438,15 @@ main.is-unstuck {
     transition: none;
   }
 
-  .unstuck-ready:hover::before {
+  .unstuck-ready:hover::before,
+  .angles-another:hover::before {
     animation: none;
+  }
+
+  .path,
+  .path-title,
+  .path-title::after,
+  .path-arrow {
+    transition: none;
   }
 }
