@@ -11,6 +11,7 @@ const paths = [
     title: "Get Unstuck",
     lead: ["A quick shift in perspective", "(5 min)"],
     featured: true,
+    exercise: "unstuck",
   },
   {
     id: "connection",

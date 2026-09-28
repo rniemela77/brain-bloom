@@ -847,6 +847,303 @@ main.is-home {
   }
 }
 
+main.is-unstuck {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding-bottom: 1.25rem;
+}
+
+.unstuck {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  color: #1a2330;
+}
+
+.unstuck-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.2rem;
+}
+
+.unstuck-back {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-left: -0.45rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.unstuck-back svg {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.unstuck-step {
+  margin: 0;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+}
+
+.unstuck-title {
+  margin: 1.7rem 0 1.15rem;
+  font-family: var(--serif);
+  font-size: clamp(2.45rem, 8.2vw, 3.05rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  font-variation-settings: "SOFT" 20, "opsz" 80;
+}
+
+.unstuck-marked {
+  position: relative;
+  display: inline-block;
+}
+
+.unstuck-underline {
+  position: absolute;
+  left: 1.15em;
+  bottom: -0.22em;
+  width: 100%;
+  height: 0.42em;
+  object-fit: fill;
+  pointer-events: none;
+  transform: rotate(-3deg);
+}
+
+.unstuck-lead,
+.unstuck-note {
+  margin: 0;
+  max-width: 18em;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.unstuck-lead {
+  color: #1a2330;
+  font-weight: 600;
+}
+
+.unstuck-note {
+  margin-top: 1.15rem;
+  max-width: 16em;
+  color: #8b939c;
+}
+
+.unstuck-scene {
+  position: relative;
+  height: 28rem;
+  margin-top: auto;
+}
+
+.scene-ridge,
+.scene-figure,
+.scene-scribble {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.scene-ridge {
+  z-index: 0;
+  right: -10%;
+  bottom: 0;
+  width: 88%;
+}
+
+.scene-figure {
+  z-index: 1;
+  left: -8%;
+  bottom: 0;
+  width: 118%;
+}
+
+.scene-scribble {
+  z-index: 2;
+  right: -2%;
+  bottom: 13.5rem;
+  width: 15rem;
+  transform: rotate(8deg);
+}
+
+.unstuck-ready {
+  appearance: none;
+  position: fixed;
+  z-index: 3;
+  left: 50%;
+  right: auto;
+  width: min(calc(32.5rem - 3.3rem), calc(100% - 3.3rem));
+  transform: translateX(-50%);
+  bottom: 3.25rem;
+  padding: 1.05rem 1.2rem;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  background: #1a1a1a;
+  color: #f6f3ec;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.unstuck-ready::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  width: 42rem;
+  height: 42rem;
+  margin-left: -21rem;
+  margin-top: -21rem;
+  background: url("./assets/unstuck/button-scratch.png") 0% 0% / 18rem auto repeat;
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+.unstuck-ready-label {
+  position: relative;
+  z-index: 1;
+}
+
+.unstuck-ready:hover::before {
+  opacity: 1;
+  animation: ready-grain 1s linear infinite;
+}
+
+@keyframes ready-grain {
+  0%,
+  24.99% {
+    background-position: 0% 0%;
+    transform: rotate(0deg);
+  }
+
+  25%,
+  49.99% {
+    background-position: 100% 0%;
+    transform: rotate(90deg);
+  }
+
+  50%,
+  74.99% {
+    background-position: 100% 100%;
+    transform: rotate(180deg);
+  }
+
+  75%,
+  100% {
+    background-position: 0% 100%;
+    transform: rotate(270deg);
+  }
+}
+
+.prompt-title {
+  margin-bottom: 1.35rem;
+}
+
+.unusual {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+}
+
+.unusual::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.28em;
+  right: -0.32em;
+  top: -0.08em;
+  bottom: -0.12em;
+  border-radius: 50%;
+  background: #d5e4f6 center / cover no-repeat;
+  background-image: url("./assets/unstuck/blue-paper.png");
+  opacity: 0.72;
+  transform: rotate(-8deg);
+}
+
+.unusual::after {
+  content: "";
+  position: absolute;
+  left: -0.05em;
+  right: -0.15em;
+  bottom: 0.02em;
+  height: 0.08em;
+  background: #1a2330;
+  transform: rotate(-2deg);
+}
+
+.prompt-intro {
+  margin: 0;
+  color: #8b939c;
+  font-size: 1.12rem;
+  line-height: 1.35;
+}
+
+.prompt-list {
+  list-style: none;
+  margin: 1.7rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.15rem;
+}
+
+.prompt-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.prompt-n {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 50%;
+  background: #f3e7ea center / cover no-repeat;
+  color: #1a2330;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.prompt-text {
+  padding-top: 0.4rem;
+  color: #3c4550;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.prompt-scene {
+  position: relative;
+  height: 18.5rem;
+  margin-top: auto;
+}
+
+.prompt-rock {
+  position: absolute;
+  z-index: 0;
+  left: -16%;
+  bottom: -3rem;
+  width: 92%;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .view,
   .word,
@@ -856,5 +1153,9 @@ main.is-home {
 
   .btn {
     transition: none;
+  }
+
+  .unstuck-ready:hover::before {
+    animation: none;
   }
 }

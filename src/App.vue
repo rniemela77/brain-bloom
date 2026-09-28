@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import HomeView from "./components/HomeView.vue";
+import UnstuckView from "./components/UnstuckView.vue";
 import ConnectionView from "./components/ConnectionView.vue";
 import UsesView from "./components/UsesView.vue";
 import CompleteView from "./components/CompleteView.vue";
@@ -47,6 +48,7 @@ function openUses() {
 
 function openExercise(name) {
   if (name === "uses") openUses();
+  else if (name === "unstuck") show("unstuck");
   else openConnection();
 }
 
@@ -72,10 +74,20 @@ function finishUses(answers) {
 </script>
 
 <template>
-  <div class="atmosphere" :class="{ 'is-quiet': view === 'home' }" aria-hidden="true"></div>
+  <div
+    class="atmosphere"
+    :class="{ 'is-quiet': view === 'home' || view === 'unstuck' }"
+    aria-hidden="true"
+  ></div>
 
-  <main :class="{ 'is-home': view === 'home' }">
+  <main
+    :class="{
+      'is-home': view === 'home' || view === 'unstuck',
+      'is-unstuck': view === 'unstuck',
+    }"
+  >
     <HomeView v-if="view === 'home'" @open="openExercise" />
+    <UnstuckView v-else-if="view === 'unstuck'" @home="show('home')" />
     <ConnectionView
       v-else-if="view === 'connection'"
       :words="words"
@@ -101,7 +113,7 @@ function finishUses(answers) {
     />
   </main>
 
-  <footer v-if="view !== 'home'" class="site-footer">
+  <footer v-if="view !== 'home' && view !== 'unstuck'" class="site-footer">
     <p>© 2026 Robert Niemela</p>
     <a href="https://www.rvniemela.com/">rvniemela.com</a>
   </footer>
