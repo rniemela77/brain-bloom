@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { ROUND_SECONDS, formatTime, parseUses } from "../exercises.js";
+import pinkPaper from "../assets/home/pink-paper.png";
 
 const props = defineProps({
   object: { type: Object, required: true },
@@ -64,40 +65,50 @@ onUnmounted(stopTimer);
 </script>
 
 <template>
-  <section class="view is-active" aria-label="What Else Could It Be?">
-    <header class="exercise-top">
-      <button class="text-btn" type="button" @click="emit('home')">← Home</button>
-      <p class="exercise-kicker">Exercise 02</p>
+  <section class="view is-active connection-screen uses-screen" aria-label="What Else Could It Be?">
+    <header class="unstuck-bar">
+      <button class="unstuck-back" type="button" aria-label="Back" @click="emit('home')">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M15 5 8 12l7 7"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
     </header>
 
-    <h2 class="exercise-title">What Else Could It Be?</h2>
-    <p class="exercise-lead">
-      Generate more options by inventing uses beyond the obvious.
+    <h1 class="unstuck-title connection-title">
+      What else<br />
+      <span class="connection-title-em">could it be?</span>
+    </h1>
+    <p class="prompt-intro">
+      An ordinary object. Five other uses.<br />
+      60 seconds.
     </p>
 
-    <div class="word-stage" aria-live="polite">
-      <p class="word">{{ object.name }}</p>
-    </div>
-
-    <div class="round-meta">
-      <p class="timer" :class="timerClass">
-        <span class="timer-label">Time</span>
-        <span>{{ formatTime(remaining) }}</span>
-      </p>
-      <p class="challenge">
-        Come up with <strong>5 things</strong> you could use it for that aren't
-        {{ object.usual }}.
+    <div class="uses-stage">
+      <p class="connection-word">{{ object.name }}</p>
+      <p class="uses-time" :class="timerClass">
+        <img class="uses-pink" :src="pinkPaper" alt="" />
+        <span class="visually-hidden">Time remaining</span>
+        <span class="uses-time-value">{{ formatTime(remaining) }}</span>
       </p>
     </div>
 
-    <form class="answers" @submit.prevent="onSubmit">
+    <p class="unstuck-lead connection-ask">
+      Come up with 5 things you could use it for that aren’t {{ object.usual }}.
+    </p>
+
+    <form class="connection-form" @submit.prevent="onSubmit">
       <label class="uses-label">
         <span class="visually-hidden">Your other uses</span>
         <textarea
           ref="input"
           v-model="usesText"
-          class="uses-box"
-          rows="10"
+          rows="8"
           maxlength="1200"
           placeholder="List 5 other uses. Fast is fine. Weird is better."
         ></textarea>
@@ -105,20 +116,12 @@ onUnmounted(stopTimer);
 
       <p class="uses-status" aria-live="polite">{{ status }}</p>
 
-      <div class="actions">
-        <button class="btn btn-primary" type="submit">Trace it</button>
-        <button class="btn btn-ghost" type="button" @click="emit('weirder')">
-          Give me a weirder object
-        </button>
-      </div>
+      <button class="connection-submit" type="submit">
+        <span class="unstuck-ready-label">Trace it →</span>
+      </button>
+      <button class="connection-reshuffle" type="button" @click="emit('weirder')">
+        <span class="unstuck-ready-label">Give me a weirder object</span>
+      </button>
     </form>
-
-    <aside class="why">
-      <h3>Why it works</h3>
-      <p>
-        It’s practice at seeing more than the obvious use — a basic move
-        in coming up with ideas.
-      </p>
-    </aside>
   </section>
 </template>

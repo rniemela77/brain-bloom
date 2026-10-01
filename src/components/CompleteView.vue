@@ -1,27 +1,42 @@
 <script setup>
+import pinkPaper from "../assets/home/pink-paper.png";
+import yellowPaper from "../assets/home/yellow-paper.png";
+import bluePaper from "../assets/unstuck/blue-paper.png";
+
 defineProps({
   prompt: { type: String, required: true },
   answers: { type: Array, required: true },
 });
 
 defineEmits(["again", "home"]);
+
+const papers = [pinkPaper, yellowPaper, bluePaper];
 </script>
 
 <template>
-  <section class="view is-active" aria-label="Your trace">
-    <p class="exercise-kicker">Nice work</p>
-    <h2 class="exercise-title">Your brain just did something unusual.</h2>
-    <p class="exercise-lead">{{ prompt }}</p>
-    <ol class="trace-list">
-      <li v-for="(answer, i) in answers" :key="i">{{ answer }}</li>
+  <section class="view is-active connection-screen" aria-label="Your trace">
+    <h1 class="unstuck-title connection-title">
+      Your brain just<br />
+      did something<br />
+      <span class="connection-title-em">unusual.</span>
+    </h1>
+    <p class="prompt-intro">{{ prompt }}</p>
+
+    <ol class="connection-results">
+      <li v-for="(answer, i) in answers" :key="i">
+        <span
+          class="prompt-n"
+          :style="{ backgroundImage: `url(${papers[i % papers.length]})` }"
+        >{{ i + 1 }}</span>
+        <p>{{ answer }}</p>
+      </li>
     </ol>
-    <div class="actions">
-      <button class="btn btn-primary" type="button" @click="$emit('again')">
-        Another round
-      </button>
-      <button class="btn btn-ghost" type="button" @click="$emit('home')">
-        Back home
-      </button>
-    </div>
+
+    <button class="connection-submit" type="button" @click="$emit('again')">
+      <span class="unstuck-ready-label">Another round →</span>
+    </button>
+    <button class="connection-reshuffle" type="button" @click="$emit('home')">
+      <span class="unstuck-ready-label">Back home</span>
+    </button>
   </section>
 </template>

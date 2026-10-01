@@ -76,13 +76,25 @@ function finishUses(answers) {
 <template>
   <div
     class="atmosphere"
-    :class="{ 'is-quiet': view === 'home' || view === 'unstuck' }"
+    :class="{
+      'is-quiet':
+        view === 'home' ||
+        view === 'unstuck' ||
+        view === 'connection' ||
+        view === 'uses' ||
+        view === 'complete',
+    }"
     aria-hidden="true"
   ></div>
 
   <main
     :class="{
-      'is-home': view === 'home' || view === 'unstuck',
+      'is-home':
+        view === 'home' ||
+        view === 'unstuck' ||
+        view === 'connection' ||
+        view === 'uses' ||
+        view === 'complete',
       'is-unstuck': view === 'unstuck',
     }"
   >
@@ -113,7 +125,10 @@ function finishUses(answers) {
     />
   </main>
 
-  <footer v-if="view !== 'home' && view !== 'unstuck'" class="site-footer">
+  <footer
+    v-if="view !== 'home' && view !== 'unstuck' && view !== 'connection' && view !== 'uses' && view !== 'complete'"
+    class="site-footer"
+  >
     <p>© 2026 Robert Niemela</p>
     <a href="https://www.rvniemela.com/">rvniemela.com</a>
   </footer>
