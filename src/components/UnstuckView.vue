@@ -108,7 +108,11 @@ function finish() {
 </script>
 
 <template>
-  <section class="view is-active unstuck" aria-label="Get Unstuck">
+  <section
+    class="view is-active unstuck"
+    :class="{ 'is-step-4': step === 4 }"
+    aria-label="Get Unstuck"
+  >
     <header class="unstuck-bar">
       <button class="unstuck-back" type="button" aria-label="Back" @click="back">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">

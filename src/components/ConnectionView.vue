@@ -105,7 +105,7 @@ function onSubmit() {
       </label>
 
       <button class="connection-submit" type="submit">
-        <span class="unstuck-ready-label">Trace it →</span>
+        <span class="unstuck-ready-label">I’m done</span>
       </button>
       <button class="connection-reshuffle" type="button" @click="emit('reshuffle')">
         <span class="unstuck-ready-label">New words</span>

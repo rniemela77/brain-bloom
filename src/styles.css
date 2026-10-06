@@ -1238,6 +1238,12 @@ main.is-unstuck {
   transform: rotate(-2deg);
 }
 
+.is-step-4 .angles-stroke {
+  left: 2%;
+  bottom: -0.18em;
+  transform: rotate(4deg);
+}
+
 .angle-list {
   list-style: none;
   margin: 1.6rem 0 0;
@@ -1279,6 +1285,12 @@ main.is-unstuck {
   pointer-events: none;
 }
 
+.is-step-4 .angle-spark {
+  right: 8.5rem;
+  top: 4.2rem;
+  transform: rotate(32deg);
+}
+
 .angles-foot {
   position: relative;
   margin-top: auto;
@@ -1296,6 +1308,12 @@ main.is-unstuck {
   transform-origin: right center;
   z-index: 2;
   pointer-events: none;
+}
+
+.is-step-4 .angles-scrap {
+  left: 10.5rem;
+  bottom: -6.8rem;
+  transform: rotate(148deg);
 }
 
 .angles-another {
@@ -1685,6 +1703,26 @@ main.is-unstuck {
   margin: 0;
   color: #8b939c;
   font-size: 1.02rem;
+}
+
+.complete-screen {
+  position: relative;
+  isolation: isolate;
+}
+
+.complete-mountain {
+  position: absolute;
+  z-index: -1;
+  right: -32%;
+  top: 58%;
+  width: 36rem;
+  height: auto;
+  transform: rotate(-6deg);
+  pointer-events: none;
+}
+
+.complete-again {
+  margin-bottom: 0.85rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

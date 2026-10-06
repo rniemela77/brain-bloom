@@ -117,7 +117,7 @@ onUnmounted(stopTimer);
       <p class="uses-status" aria-live="polite">{{ status }}</p>
 
       <button class="connection-submit" type="submit">
-        <span class="unstuck-ready-label">Trace it →</span>
+        <span class="unstuck-ready-label">I’m done</span>
       </button>
       <button class="connection-reshuffle" type="button" @click="emit('weirder')">
         <span class="unstuck-ready-label">Give me a weirder object</span>
